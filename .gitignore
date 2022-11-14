@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+src/other/mergeSort.js
+src/other/other.js
+src/other/OtherNode.js
