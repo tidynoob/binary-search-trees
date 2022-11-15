@@ -85,6 +85,78 @@ const Tree = (arr) => {
     return undefined;
   };
 
+  const levelOrder = (node = root, callback = null) => {
+    const queue = [node];
+    const levelOrderArr = [];
+    while (queue.length > 0) {
+      const currentNode = queue.shift();
+      levelOrderArr.push(currentNode.value);
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+    }
+    if (callback) {
+      return levelOrder.map((num) => callback(num));
+    }
+    return levelOrderArr;
+  };
+
+  const inOrder = (node = root, callback = null, inOrderArr = []) => {
+    if (node !== null) {
+      inOrder(node.left, callback, inOrderArr);
+      inOrderArr.push(node.value);
+      inOrder(node.right, callback, inOrderArr);
+    }
+    if (callback) {
+      return inOrderArr.map((num) => callback(num));
+    }
+    return inOrderArr;
+  };
+
+  const preOrder = (node = root, callback = null, preOrderArr = []) => {
+    if (node !== null) {
+      preOrderArr.push(node.value);
+      preOrder(node.left, callback, preOrderArr);
+      preOrder(node.right, callback, preOrderArr);
+    }
+    if (callback) {
+      return preOrderArr.map((num) => callback(num));
+    }
+    return preOrderArr;
+  };
+
+  const postOrder = (node = root, callback = null, postOrderArr = []) => {
+    if (node !== null) {
+      postOrder(node.left, callback, postOrderArr);
+      postOrder(node.right, callback, postOrderArr);
+      postOrderArr.push(node.value);
+    }
+    if (callback) {
+      return postOrderArr.map((num) => callback(num));
+    }
+    return postOrderArr;
+  };
+
+  const height = (node = root, h = 0) => {
+    if (node === null) {
+      return h - 1;
+    }
+    const leftHeight = height(node.left, h + 1);
+    const rightHeight = height(node.right, h + 1);
+    // console.log(
+    //   "node: ",
+    //   node.value,
+    //   "leftHeight: ",
+    //   leftHeight,
+    //   "rightHeight: ",
+    //   rightHeight
+    // );
+    return Math.max(leftHeight, rightHeight);
+  };
+
   const prettyPrint = (node = root, prefix = "", isLeft = true) => {
     if (node.right !== null) {
       prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
@@ -101,6 +173,11 @@ const Tree = (arr) => {
     insertVal,
     deleteVal,
     findVal,
+    levelOrder,
+    inOrder,
+    preOrder,
+    postOrder,
+    height,
     prettyPrint,
   };
 };
