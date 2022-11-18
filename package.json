@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "test": "node dist/test.js",
-    "lite": "lite-server --port 10001"
+    "build-test": "npm run build && npm run test"
   },
   "repository": {
     "type": "git",

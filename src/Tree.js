@@ -142,19 +142,38 @@ const Tree = (arr) => {
 
   const height = (node = root, h = 0) => {
     if (node === null) {
-      return h - 1;
+      return Math.max(h - 1, 0);
     }
     const leftHeight = height(node.left, h + 1);
     const rightHeight = height(node.right, h + 1);
-    // console.log(
-    //   "node: ",
-    //   node.value,
-    //   "leftHeight: ",
-    //   leftHeight,
-    //   "rightHeight: ",
-    //   rightHeight
-    // );
     return Math.max(leftHeight, rightHeight);
+  };
+
+  const depth = (value) => {
+    let current = root;
+    let d = 0;
+    while (current.value !== value) {
+      if (current === null) {
+        return null;
+      }
+      if (value < current.value) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+      d += 1;
+    }
+    return d;
+  };
+
+  const isBalanced = (node = root) => {
+    if (node === null || (node.left === null && node.right === null)) {
+      return true;
+    }
+    const leftHeight = height(node.left);
+    const rightHeight = height(node.right);
+    if (Math.abs(leftHeight - rightHeight) > 1) return false;
+    return isBalanced(node.left) && isBalanced(node.right);
   };
 
   const prettyPrint = (node = root, prefix = "", isLeft = true) => {
@@ -178,6 +197,8 @@ const Tree = (arr) => {
     preOrder,
     postOrder,
     height,
+    depth,
+    isBalanced,
     prettyPrint,
   };
 };

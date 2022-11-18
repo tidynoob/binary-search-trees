@@ -2,18 +2,7 @@
 import Tree from "./Tree";
 // import otherTree from "./other/other";
 
-const tree = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+// const tree = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+const tree = Tree([1, 2, 3]);
 
-// tree.prettyPrint();
-// tree.insert(5);
-// tree.prettyPrint();
-tree.insertVal(2);
-tree.prettyPrint();
-tree.deleteVal(8);
-tree.prettyPrint();
-// console.log(tree.findVal(6345));
-// console.log(tree.levelOrder());
-// console.log(tree.inOrder());
-// console.log(tree.preOrder());
-// console.log(tree.postOrder());
-console.log(tree.height());
+console.log(tree.height(tree.root.left));
