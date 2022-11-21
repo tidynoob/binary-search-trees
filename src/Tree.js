@@ -19,7 +19,7 @@ const Tree = (arr) => {
     return node;
   };
 
-  const root = buildTree(dedupedArray);
+  let root = buildTree(dedupedArray);
 
   const insertVal = (value, checkNode = root) => {
     let node = checkNode;
@@ -176,6 +176,12 @@ const Tree = (arr) => {
     return isBalanced(node.left) && isBalanced(node.right);
   };
 
+  const rebalance = () => {
+    const array = inOrder();
+    // console.log(array);
+    return root = buildTree(array);
+  }
+
   const prettyPrint = (node = root, prefix = "", isLeft = true) => {
     if (node.right !== null) {
       prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
@@ -199,6 +205,7 @@ const Tree = (arr) => {
     height,
     depth,
     isBalanced,
+    rebalance,
     prettyPrint,
   };
 };
