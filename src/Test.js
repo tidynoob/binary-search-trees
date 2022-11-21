@@ -1,16 +1,52 @@
-// import Node from './Node.js';
 import Tree from "./Tree";
-// import otherTree from "./other/other";
 
-// const tree = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
-const tree = Tree([1, 2, 3]);
+function randomNum (max, min = 0) {
+    if (min < 0) throw "Min must be greater than or equal to 0"
+    let num = Math.floor(Math.random() * max);
+    while (num < min) {
+        num = Math.floor(Math.random() * max);
+    }
+    return num
+}
 
-tree.insertVal(4);
-tree.insertVal(5);
+function randomArray (n, max, min = 0) {
+    let arr = [];
+    for (let i = 0; i < n; i++) {
+        const num = randomNum(max);
+        arr.push(num);
+    }
+    return arr
+}
+
+const tree = Tree(randomArray(10, 100));
 tree.prettyPrint();
-console.log(tree.isBalanced());
+console.log("Is the tree balanced?", tree.isBalanced());
+console.log("Level Order: ", tree.levelOrder());
+console.log("Pre Order: ", tree.preOrder());
+console.log("Post Order: ", tree.postOrder());
+console.log("In Order: ", tree.inOrder());
+let newNum = randomNum(1000, 100);
+tree.insertVal(newNum);
+console.log("Inserted: ", newNum);
+newNum = randomNum(1000, 100);
+tree.insertVal(newNum);
+console.log("Inserted: ", newNum);
+newNum = randomNum(1000, 100);
+tree.insertVal(newNum);
+console.log("Inserted: ", newNum);
+newNum = randomNum(1000, 100);
+tree.insertVal(newNum);
+console.log("Inserted: ", newNum);
+newNum = randomNum(1000, 100);
+tree.insertVal(newNum);
+console.log("Inserted: ", newNum);
+console.log("Is the tree balanced?", tree.isBalanced());
+tree.prettyPrint();
 tree.rebalance();
+console.log("Tree rebalanced");
+console.log("Is the tree balanced?", tree.isBalanced());
 tree.prettyPrint();
-console.log(tree.isBalanced());
-
-// console.log(tree.height(tree.root.left));
+console.log("Level Order: ", tree.levelOrder());
+console.log("Pre Order: ", tree.preOrder());
+console.log("Post Order: ", tree.postOrder());
+console.log("In Order: ", tree.inOrder());
